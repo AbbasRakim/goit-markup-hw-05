@@ -511,6 +511,8 @@ img {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.17;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .address .item:hover {
@@ -588,9 +590,9 @@ img {
   cursor: pointer;
   border-color: transparent;
 
-  transition: bacground-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    bacground-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-button:hover,
@@ -656,21 +658,6 @@ img {
 
 .thumb-portfolio {
   position: relative;
-  overflow: hidden;
-}
-
-.thumb-portfolio::before {
-  display: inline-block;
-  content: "";
-  position: absolute;
-
-  width: 100%;
-  height: 100%;
-  background-color: rgba(33, 150, 243, 0.9);
-
-  opacity: 0;
-  transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-link {
@@ -684,30 +671,29 @@ img {
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-.portfolio-link:hover .thumb-portfolio::before {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .thumb-text {
   position: absolute;
   display: block;
-  width: 322px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 
+  padding: 63px 24px;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
-  overflow: hidden;
 
   font-weight: 400;
   font-size: 18px;
   line-height: 1.5;
   color: var(--primary-white-color);
+  background-color: rgba(33, 150, 243, 0.9);
 }
 
-.thumb-text:hover {
+.portfolio-link:hover .thumb-text {
   opacity: 1;
+  transform: translateY(0);
 }
 
 /* -------Модальное окно------- */
@@ -729,7 +715,7 @@ img {
 }
 
 .backdrop.is-hidden.modal {
-  transform: translate(-50%, -50%) scale(0.9);
+  transform: translate(-50%, -50%), scale(0.9);
 }
 
 .modal {
